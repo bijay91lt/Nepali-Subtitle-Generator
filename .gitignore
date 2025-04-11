@@ -1,0 +1,37 @@
+# Virtual Environment
+.venv/
+venv/
+*.pyenv/
+env/
+
+# VS Code specific
+.vscode/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Data files (if large or sensitive - add specific patterns)
+# data/custom_audio/*.wav
+# data/large_dataset.zip
+# Consider using Git LFS for large files if you need to version them
+
+# Saved models (often large - better to store elsewhere or use Git LFS)
+saved_models/
+*.pt
+*.bin
+*.onnx
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
