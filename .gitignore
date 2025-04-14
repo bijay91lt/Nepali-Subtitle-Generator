@@ -18,6 +18,7 @@ __pycache__/
 
 # Data files (if large or sensitive - add specific patterns)
 data
+merged_dataset
 # Consider using Git LFS for large files if you need to version them
 
 # Saved models (often large - better to store elsewhere or use Git LFS)
