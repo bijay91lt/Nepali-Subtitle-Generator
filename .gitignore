@@ -19,14 +19,14 @@ __pycache__/
 # Data files (if large or sensitive - add specific patterns)
 data
 merged_dataset
+test_audios
 # Consider using Git LFS for large files if you need to version them
 
 # Saved models (often large - better to store elsewhere or use Git LFS)
-saved_models/
-*.pt
-*.bin
-*.onnx
-
+whisper-nepali-finetuned/
+whisper-nepali-finetuned.zip/
+whisper_finetuned/
+final_model(5000)/
 # Build artifacts
 dist/
 build/

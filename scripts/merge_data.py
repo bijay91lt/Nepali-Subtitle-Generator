@@ -45,7 +45,10 @@ def process_common_voice(folder, records):
 
                 dst = MERGED_AUDIO_DIR / src.name
                 convert_to_wav(src, dst)
-                records.append([str(dst.resolve()), transcript])
+                
+                # Add relative path for audio
+                relative_audio_path = dst.relative_to(ROOT)
+                records.append([str(relative_audio_path), transcript])
 
 def process_fleurs(folder, records):
     """Process FLEURS Nepali dataset."""
@@ -60,19 +63,26 @@ def process_fleurs(folder, records):
 
         with open(tsv_path, encoding="utf-8") as f:
             reader = csv.reader(f, delimiter="\t")
-            next(reader)  # Skip header row
             for row in reader:
-                clip_name = row[1]
-                transcript = row[2]
+                # Extract only the audio path (column 2) and transcription (column 3)
+                clip_name = row[0]  # Column 2: Audio file name
+                transcript = row[1]  # Column 3: Transcription
+                
+                # Construct the full path to the audio file
                 src = audio_dir / clip_name
 
+                # Skip if the audio file is missing
                 if not src.exists():
                     print(f"Skipping missing file: {src}")
                     continue
 
+                # Convert the audio file to WAV format and save it in the destination directory
                 dst = MERGED_AUDIO_DIR / src.name
                 convert_to_wav(src, dst)
-                records.append([str(dst.resolve()), transcript])
+
+                # Add the relative path for the audio file and its transcription to the records
+                relative_audio_path = dst.relative_to(ROOT)
+                records.append([str(relative_audio_path), transcript])
 
 def process_openslr(folder, records):
     """Process OpenSLR Nepali dataset."""
@@ -114,7 +124,10 @@ def process_openslr(folder, records):
                         if src.exists():
                             dst = MERGED_AUDIO_DIR / (row[0] + ".wav")
                             convert_to_wav(src, dst)
-                            records.append([str(dst.resolve()), transcript])
+                            
+                            # Add relative path for audio
+                            relative_audio_path = dst.relative_to(ROOT)
+                            records.append([str(relative_audio_path), transcript])
                             found = True
                             break
 
@@ -138,7 +151,7 @@ def merge_all():
     # Write metadata to CSV
     with open(MERGED_CSV_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["audio_path", "transcription"])
+        writer.writerow(["audio", "sentence"])
         writer.writerows(records)
     print(f"Merged {len(records)} audio-transcription pairs into {MERGED_CSV_PATH}")
 
