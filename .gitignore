@@ -27,6 +27,7 @@ whisper-nepali-finetuned/
 whisper-nepali-finetuned.zip/
 whisper_finetuned/
 final_model(5000)/
+final_model(5308)/
 # Build artifacts
 dist/
 build/

@@ -24,7 +24,7 @@ def load_model_and_processor():
     Load the Whisper model and processor with caching for better performance.
     """
     MODEL_NAME = "openai/whisper-small"
-    FINE_TUNED_MODEL_PATH = "final_model(5000)"
+    FINE_TUNED_MODEL_PATH = "final_model(5308)"
     DEVICE = torch.device("cpu")
     
     with st.spinner("Loading model and processor..."):
